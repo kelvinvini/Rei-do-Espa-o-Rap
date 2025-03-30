@@ -164,6 +164,16 @@
 
 
         @media (max-width: 767px) {
+            .hamburger {
+                display: block;
+                /* Mostrar o ícone de hambúrguer em dispositivos móveis */
+            }
+
+            .menu {
+                display: none;
+                /* Ocultar o menu completo em dispositivos móveis */
+            }
+
             header h1 {
                 position: relative;
                 left: 10px;
@@ -192,6 +202,11 @@
         }
 
         @media (min-width: 768px) and (max-width: 1024px) {
+            .hamburger {
+                display: none;
+                /* Ocultar o ícone de hambúrguer em tablets */
+            }
+
             header img.left {
                 left: 0;
             }
@@ -201,7 +216,7 @@
             }
 
             .menu {
-                transform: none;
+                top: 5px;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -209,6 +224,7 @@
                 position: relative;
                 width: 100%;
                 background-color: transparent;
+                transform: translateX(0);
             }
 
             .hamburger {
@@ -232,11 +248,23 @@
             }
 
             .menu {
-                top: 5px;
+                display: flex;
+                /* Mostrar o menu completo em tablets e desktops */
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+                position: relative;
+                width: 100%;
+                background-color: transparent;
             }
         }
 
         @media (min-width: 1025px) {
+            .hamburger {
+                display: none;
+                /* Ocultar o ícone de hambúrguer em desktops */
+            }
+
             header img.left {
                 position: absolute;
                 left: 50px;
@@ -249,6 +277,14 @@
 
             .menu {
                 top: 5px;
+                display: flex;
+                /* Mostrar o menu completo em desktops */
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+                position: relative;
+                width: 100%;
+                background-color: transparent;
             }
         }
 
@@ -369,7 +405,8 @@
     </main>
 
     <footer>
-        <p>&copy; 2025 Rei do Espaço Rap. Criando história, preservando a autenticidade. Todos os direitos reservados.</p>
+        <p>&copy; 2025 Rei do Espaço Rap. Criando história, preservando a autenticidade. Todos os direitos reservados.
+        </p>
         <p>
             Siga-nos no
             <a href="https://www.instagram.com/oh_r.e.r?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
