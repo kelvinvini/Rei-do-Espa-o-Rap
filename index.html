@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rei do Espaço Rap</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: -1;
+        }
+
+        header {
+            background-color: transparent;
+            color: #fff;
+            padding: 10px 0;
+            text-align: center;
+            position: relative;
+        }
+
+        header img {
+            position: absolute;
+            top: 10px;
+            width: 200px;
+            height: 200px;
+        }
+
+        header img.left {
+            left: 500px;
+        }
+
+        header img.right {
+            right: 150px;
+        }
+
+        nav {
+            background-color: transparent;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            color: #fff;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+            background-color: transparent;
+        }
+
+        .section {
+            margin-bottom: 20px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            margin-top: 0;
+        }
+
+        footer {
+            background-color: rgba(51, 51, 51, 0.8);
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+        }
+
+        details {
+            margin-bottom: 10px;
+        }
+
+        summary {
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .hamburger {
+            display: block;
+            position: fixed;
+            top: 40px;
+            right: 30px;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        .hamburger div {
+            width: 30px;
+            height: 3px;
+            background-color: #fff;
+            margin: 5px 0;
+            transition: 0.4s;
+        }
+
+        .menu {
+            display: none;
+            flex-direction: column;
+            align-items: flex-start;
+            position: fixed;
+            top: 40px;
+            right: 15px;
+            width: 200px;
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1;
+            transition: transform 0.3s ease;
+            transform: translateX(-100%);
+        }
+
+        .menu a {
+            color: #fff;
+            margin: 5px 0;
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 5px;
+            transition: color 0.3s ease,
+        }
+
+        .menu a:hover {
+            color: #ffcc00;
+        }
+
+        .menu.open {
+            transform: translateX(0);
+            display: flex;
+        }
+
+
+
+        @media (max-width: 767px) {
+            header h1 {
+                position: relative;
+                left: 10px;
+            }
+
+            header h2 {
+                position: relative;
+                left: 10px;
+            }
+
+            nav {
+                display: flex;
+            }
+
+            header img.right {
+                display: none;
+            }
+
+
+            header img.left {
+                left: 2px;
+                top: 10px;
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        @media (min-width: 768px) and (max-width: 1024px) {
+            header img.left {
+                left: 0;
+            }
+
+            header img.right {
+                right: 0;
+            }
+
+            .menu {
+                transform: none;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+                position: relative;
+                width: 100%;
+                background-color: transparent;
+            }
+
+            .hamburger {
+                display: none;
+            }
+
+            nav {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: row;
+                position: static;
+                transform: translateX(0);
+                background-color: transparent;
+                height: auto;
+            }
+
+            nav a {
+                margin: 0 15px;
+                font-size: 1em;
+            }
+
+            .menu {
+                top: 5px;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            header img.left {
+                position: absolute;
+                left: 50px;
+            }
+
+            header img.right {
+                position: absolute;
+                right: 50px;
+            }
+
+            .menu {
+                top: 5px;
+            }
+        }
+
+        #campeoes h1 {
+            font-size: 1.4em;
+        }
+    </style>
+</head>
+
+<body>
+    <video autoplay muted loop>
+        <source src="./assets/video-rer.mov" type="video/mp4">
+        Seu navegador não suporta a tag de vídeo.
+    </video>
+    <div class="overlay"></div>
+    <header>
+        <img src="./assets/logo_rer_black-removebg-preview.png" alt="logo-rei-do-espaço-rap" class="left">
+        <h1>👑𝕽.𝕰.𝕽👑</h1>
+        <h2>👑 𝕽𝖊𝖎 𝑫𝖔 𝕰𝖘𝖕𝖆𝖈𝖔 𝕽𝖆𝖕👑</h2>
+        <img src="./assets/logo_rer_black-removebg-preview.png" alt="logo-rei-do-espaço-rap" class="right">
+    </header>
+    <div class="hamburger">
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+    <nav class="menu">
+        <a href="#sobre">Sobre</a>
+        <a href="#regras">Regras</a>
+        <a href="#campeoes">Campeões</a>
+        <a href="#curiosidades">Curiosidades</a>
+    </nav>
+    <main>
+        <div id="sobre" class="section">
+            <h2> 𝕾𝖔𝖇𝖗𝖊 𝕺 👑𝕽.𝕰.𝕽👑 </h2>
+            <p>
+                A nossa batalha de rimas nasceu em 2016, reunindo MCs e amantes do freestyle para desafiar a
+                criatividade e o improviso no WhatsApp. Depois de uma pausa, voltamos com força total em 2020, mantendo
+                a essência do rap e dando espaço para talentos de todo o Brasil.
+
+                Aqui, cada rima é uma história, cada batalha é um show, e cada participante tem a chance de mostrar sua
+                arte. Seja você um veterano do improviso ou alguém que está começando, esse é o lugar para testar seu
+                talento e evoluir!
+
+                Entre, participe e faça história com a gente! 🚀🎶</p>
+        </div>
+        <div id="regras" class="section">
+
+            <h1>𝕽𝖊𝖌𝖗𝖆𝖘 𝕯𝖔 👑𝕽.𝕰.𝕽👑</h1>
+            <p><b>Para garantir um duelo justo e empolgante, nossa batalha segue um formato estruturado, dando espaço
+                    para cada MC mostrar sua criatividade e habilidade no freestyle. Confira as regras:</b></p>
+
+            <p><b>📌 Formato dos Rounds</b></p>
+            <p>🔹 1º Round (Ataque e Resposta) – Cada MC tem 45 segundos para atacar seu oponente. Em seguida, o
+                adversário tem 45 segundos para responder.</p>
+            <p>🔹 2º Round (Ataque e Resposta) – Mantemos o mesmo formato: 45 segundos para o ataque e 45 segundos para
+                a resposta.</p>
+            <p>🔹 3º Round (Trocação Rápida) – Cada MC manda 3 áudios de 20 segundos alternadamente, garantindo um
+                confronto mais dinâmico e intenso.</p>
+
+            <p><b>⚖️ Critérios de Avaliação
+                    Os participantes serão avaliados com base nos seguintes pontos:</b></p>
+            <p>✅ Criatividade – Uso de metáforas, trocadilhos e punchlines.</p>
+            <p>✅ Flow e Ritmo – Capacidade de encaixar as rimas no tempo certo.</p>
+            <p>✅ Originalidade – Evitar rimas repetitivas e trazer conteúdo inovador.</p>
+            <p>✅ Ataque e Resposta – Inteligência na construção dos versos e impacto das respostas.</p>
+
+            <b>Prepare-se, afie suas rimas e mostre seu talento! 🔥🎶</b>
+        </div>
+        <div id="campeoes" class="section">
+            <h1>👑𝕽𝖊𝖎𝖘 𝑫𝖔 𝕰𝖘𝖕𝖆𝖈𝖔 𝕽𝖆𝖕👑</h1>
+            <p>7 👑 Títulos 👑
+                Bahiano</p>
+
+            <p>5 👑 Títulos 👑
+                Reniel • Jorgin</p>
+
+            <p>4 👑 Títulos 👑
+                Kelvin • Death</p>
+
+            <p>3 👑 Títulos 👑
+                LB • AK • Daniel • Will • Wseis • Berley</p>
+
+            <p>2 👑 Títulos 👑
+                Muzzy • Paraguay • Lx • Lopão • Caveirx • Jaozin • Calvet</p>
+
+            <p>1 👑 Título 👑
+                Egídio • LxCard • Blnk • Mahara • KSDeus • Montes • Deblu7ne • Vs Mc • 7Carmo • Huguinho MC • Pks Mc •
+                Mina AK • Mc
+                Kéto • Moreno • MS • Peély • BlackZ • Okami • Russo • TZoura • M4dara • Eyzin • BrunnãoZN • Rugal </p>
+        </div>
+        <div id="curiosidades" class="section">
+            <h2>👑𝕮𝖚𝖗𝖎𝖔𝖘𝖎𝖉𝖆𝖉𝖊𝖘👑</h2>
+            <details>
+                <summary>Quantas edições especiais já aconteceram no 𝕽.𝕰.𝕽?</summary>
+                <p>Até o momento, tivemos 7 edições especiais no 𝕽.𝕰.𝕽.</p>
+            </details>
+            <details>
+                <summary>Quais foram as edições especiais que já aconteceram?</summary>
+                <p>As edições especiais que marcaram a história do 𝕽.𝕰.𝕽 são:</p>
+                <ul>
+                    <li>Batalha das Minas</li>
+                    <li>Batalha do Conhecimento</li>
+                    <li>Batalha de Gastação</li>
+                    <li>Batalha dos Desafios</li>
+                    <li>Batalha Trap Funk</li>
+                    <li>Edição de Duplas</li>
+                    <li>Manos x Minas</li>
+                </ul>
+            </details>
+            <details>
+                <summary>Quais MCs famosos já batalharam no grupo?</summary>
+                <p>Em 2016, o MC Dudu do ES entrou no grupo junto com o Leozin de SP. Dudu fez um round de freestyle
+                    memorável contra o MC Death. Além dele, o Jorgin, que já foi campeão 5 vezes, também marcou presença
+                    nas batalhas. Hoje, Jorgin é um MC underground de destaque na cena das batalhas.</p>
+            </details>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Rei do Espaço Rap. Criando história, preservando a autenticidade. Todos os direitos reservados.</p>
+        <p>
+            Siga-nos no
+            <a href="https://www.instagram.com/oh_r.e.r?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                target="_blank" style="color: #fff; text-decoration: none;"><i class="fab fa-instagram"></i></a>
+            <a href="https://chat.whatsapp.com/https://chat.whatsapp.com/BAJuh9UqakbFvWZZosxYft" target="_blank"
+                style="color: #fff; text-decoration: none;"><i class="fab fa-whatsapp"></i></a>.
+            <a href="https://www.youtube.com/https://m.youtube.com/channel/UC9kI8OIUNyh37fLxiBhQ3Lg
+            " target="_blank" style="color: #fff; text-decoration: none;"><i class="fab fa-youtube"></i></a>
+
+        </p>
+    </footer>
+    <script src="scripts/hamburgerMenu.js" defer></script>
+</body>
+
+</html>
